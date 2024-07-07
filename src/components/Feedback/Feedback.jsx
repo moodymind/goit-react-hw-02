@@ -1,7 +1,7 @@
 export const Feedback = ({ good, neutral, bad, total, positivePercentage }) => {
   console.log("Feedback Component - Positive Percentage:", positivePercentage);
   return (
-    <div className="feedback">
+    <div>
       <h2>Good: {good}</h2>
       <h2>Neutral: {neutral}</h2>
       <h2>Bad: {bad}</h2>

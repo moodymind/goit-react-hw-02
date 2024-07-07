@@ -3,20 +3,21 @@ import "./App.css";
 import { Feedback } from "./components/Feedback/Feedback";
 import { Description } from "./components/Description/Description";
 import { Options } from "./components/Options/Options";
+import { Notification } from "./components/Notification/Notification";
 
 function App() {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
-
-  useEffect(() => {
+  const [feedback, setFeedback] = useState(() => {
     const savedFeedback = JSON.parse(localStorage.getItem("feedback"));
     if (savedFeedback) {
-      setFeedback(savedFeedback);
+      return savedFeedback;
     }
-  }, []);
+
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
+  });
 
   useEffect(() => {
     localStorage.setItem("feedback", JSON.stringify(feedback));
@@ -61,7 +62,7 @@ function App() {
           positivePercentage={positiveFeedbackPercentage}
         />
       ) : (
-        <p>No feedback given</p>
+        <Notification />
       )}
     </>
   );
